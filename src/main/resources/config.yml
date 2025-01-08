@@ -1,0 +1,18 @@
+# HueChat Configuration
+config-version: "1.1.0"  # Used for automatic config updates
+
+prefix: "&7[&6HueChat&7]"
+
+# Command settings
+commands:
+  gui: true      # Allow /huechat to open GUI
+  color: true    # Allow /huechat color {color} command
+
+# Mention settings
+mentions:
+  enabled: true
+  highlight-color: "&e"    # Color used to highlight the mentioned name. This will highlight the entire message.
+  play-sound: true
+  sound:
+    # View all possible sounds here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html
+    type: ENTITY_EXPERIENCE_ORB_PICKUP

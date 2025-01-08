@@ -1,0 +1,26 @@
+name: HueChat
+version: '${project.version}'
+main: dev.purdze.huechat.HueChat
+api-version: '1.13'
+authors: [Purdze]
+description: A simple chat color plugin
+website: https://github.com/Purdze/HueChat
+
+commands:
+  huechat:
+    description: Main command for HueChat
+    usage: /<command> [color|help|reload]
+    aliases: [hc]
+
+permissions:
+  huechat.*:
+    description: Gives access to all HueChat commands
+    children:
+      huechat.gui: true
+      huechat.reload: true
+      huechat.color.*: true
+      huechat.updates: true
+      huechat.mention: true
+  huechat.update:
+    description: Allows players to receive update notifications
+    default: op 
