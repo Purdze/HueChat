@@ -32,8 +32,27 @@ public class HueChat extends JavaPlugin {
     
     @Override
     public void onEnable() {
-        String version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
-        serverVersion = Integer.parseInt(version.split("_")[1]);
+        // Get server version more safely
+        try {
+            String version = Bukkit.getServer().getClass().getPackage().getName();
+            String[] parts = version.split("\\.");
+            if (parts.length >= 4) {
+                String versionPart = parts[3];
+                String[] versionNumbers = versionPart.split("_");
+                if (versionNumbers.length >= 2) {
+                    serverVersion = Integer.parseInt(versionNumbers[1]);
+                } else {
+                    serverVersion = 20; // Default to latest if can't determine
+                    getLogger().warning("Could not determine server version, defaulting to latest");
+                }
+            } else {
+                serverVersion = 20; // Default to latest if can't determine
+                getLogger().warning("Could not determine server version, defaulting to latest");
+            }
+        } catch (Exception e) {
+            serverVersion = 20; // Default to latest if any error occurs
+            getLogger().warning("Error determining server version, defaulting to latest: " + e.getMessage());
+        }
         
         saveDefaultConfig();
         

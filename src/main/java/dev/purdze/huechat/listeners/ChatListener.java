@@ -9,14 +9,68 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
+import java.util.HashMap;
+import java.util.Map;
+import com.vdurmont.emoji.EmojiParser;
 
 public class ChatListener implements Listener {
 
     private final HueChat plugin;
+    private final Map<String, String> emojis = new HashMap<>();
 
     public ChatListener(HueChat plugin) {
         this.plugin = plugin;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
+        
+        // Smileys & Faces
+        emojis.put(":)", "☺");
+        emojis.put(":(", "☹");
+        emojis.put(":D", "ツ");
+        
+        // Hearts & Symbols
+        emojis.put("<3", "❤");
+        emojis.put(":heart:", "❤");
+        emojis.put(":star:", "★");
+        emojis.put(":sun:", "☀");
+        emojis.put(":cloud:", "☁");
+        emojis.put(":umbrella:", "☂");
+        emojis.put(":snowman:", "☃");
+        emojis.put(":comet:", "☄");
+        emojis.put(":peace:", "☮");
+        emojis.put(":skull:", "☠");
+        emojis.put(":radioactive:", "☢");
+        emojis.put(":biohazard:", "☣");
+        emojis.put(":cross:", "✞");
+        emojis.put(":check:", "✓");
+        emojis.put(":x:", "✗");
+        emojis.put(":mark:", "✧");
+        emojis.put(":flower:", "✿");
+        emojis.put(":sparkle:", "❋");
+        emojis.put(":note:", "♪");
+        emojis.put(":notes:", "♫");
+        emojis.put(":arrow:", "➤");
+        emojis.put(":point:", "►");
+        emojis.put(":crown:", "♔");
+        emojis.put(":dice1:", "⚀");
+        emojis.put(":dice2:", "⚁");
+        emojis.put(":dice3:", "⚂");
+        emojis.put(":dice4:", "⚃");
+        emojis.put(":dice5:", "⚄");
+        emojis.put(":dice6:", "⚅");
+        
+        // Zodiac symbols
+        emojis.put(":aries:", "♈");
+        emojis.put(":taurus:", "♉");
+        emojis.put(":gemini:", "♊");
+        emojis.put(":cancer:", "♋");
+        emojis.put(":leo:", "♌");
+        emojis.put(":virgo:", "♍");
+        emojis.put(":libra:", "♎");
+        emojis.put(":scorpius:", "♏");
+        emojis.put(":sagittarius:", "♐");
+        emojis.put(":capricorn:", "♑");
+        emojis.put(":aquarius:", "♒");
+        emojis.put(":pisces:", "♓");
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -24,6 +78,25 @@ public class ChatListener implements Listener {
         Player player = event.getPlayer();
         String message = event.getMessage();
         boolean isMentioned = false;
+        
+        // Convert emoji aliases to Unicode emojis only if player has permission
+        if (player.hasPermission("huechat.emoji.*")) {
+            message = EmojiParser.parseToUnicode(message);
+        } else {
+            // Check individual emoji permissions
+            for (Map.Entry<String, String> emoji : emojis.entrySet()) {
+                String emojiName = emoji.getKey().replace(":", "");
+                if (message.contains(emoji.getKey()) && !player.hasPermission("huechat.emoji." + emojiName)) {
+                    player.sendMessage(HueChat.getPrefix() + ChatColor.RED + "You don't have permission to use the " + emoji.getKey() + " emoji!");
+                    event.setCancelled(true);
+                    return;
+                }
+            }
+            message = EmojiParser.parseToUnicode(message);
+        }
+        
+        // Always handle emojis
+        message = replaceEmojis(message);
         
         // Handle mentions first
         if (plugin.getConfig().getBoolean("mentions.enabled", true)) {
@@ -119,5 +192,13 @@ public class ChatListener implements Listener {
                 plugin.getLogger().warning("Invalid sound in config: " + configuredSound);
             }
         }
+    }
+
+    private String replaceEmojis(String message) {
+        String result = message;
+        for (Map.Entry<String, String> emoji : emojis.entrySet()) {
+            result = result.replace(emoji.getKey(), emoji.getValue());
+        }
+        return result;
     }
 } 

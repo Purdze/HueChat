@@ -24,3 +24,143 @@ permissions:
   huechat.update:
     description: Allows players to receive update notifications
     default: op 
+  huechat.emoji.*:
+    description: Allows usage of all emojis
+    default: op
+  # Smileys
+  huechat.emoji.smile:
+    description: Allows usage of the smile emoji
+    default: true
+  huechat.emoji.sad:
+    description: Allows usage of the sad emoji
+    default: true
+  huechat.emoji.grin:
+    description: Allows usage of the grin emoji
+    default: true
+  # Symbols
+  huechat.emoji.heart:
+    description: Allows usage of the heart emoji
+    default: true
+  huechat.emoji.star:
+    description: Allows usage of the star emoji
+    default: true
+  huechat.emoji.check:
+    description: Allows usage of the check mark emoji
+    default: true
+  huechat.emoji.x:
+    description: Allows usage of the x emoji
+    default: true
+  huechat.emoji.mark:
+    description: Allows usage of the mark emoji
+    default: true
+  huechat.emoji.arrow:
+    description: Allows usage of the arrow emoji
+    default: true
+  huechat.emoji.point:
+    description: Allows usage of the point emoji
+    default: true
+  huechat.emoji.crown:
+    description: Allows usage of the crown emoji
+    default: true
+  # Weather
+  huechat.emoji.sun:
+    description: Allows usage of the sun emoji
+    default: true
+  huechat.emoji.cloud:
+    description: Allows usage of the cloud emoji
+    default: true
+  huechat.emoji.umbrella:
+    description: Allows usage of the umbrella emoji
+    default: true
+  huechat.emoji.snowman:
+    description: Allows usage of the snowman emoji
+    default: true
+  huechat.emoji.comet:
+    description: Allows usage of the comet emoji
+    default: true
+  # Music
+  huechat.emoji.note:
+    description: Allows usage of the music note emoji
+    default: true
+  huechat.emoji.notes:
+    description: Allows usage of the music notes emoji
+    default: true
+  # Warning
+  huechat.emoji.skull:
+    description: Allows usage of the skull emoji
+    default: true
+  huechat.emoji.radioactive:
+    description: Allows usage of the radioactive emoji
+    default: true
+  huechat.emoji.biohazard:
+    description: Allows usage of the biohazard emoji
+    default: true
+  # Other
+  huechat.emoji.peace:
+    description: Allows usage of the peace emoji
+    default: true
+  huechat.emoji.cross:
+    description: Allows usage of the cross emoji
+    default: true
+  huechat.emoji.flower:
+    description: Allows usage of the flower emoji
+    default: true
+  huechat.emoji.sparkle:
+    description: Allows usage of the sparkle emoji
+    default: true
+  # Dice
+  huechat.emoji.dice1:
+    description: Allows usage of dice one emoji
+    default: true
+  huechat.emoji.dice2:
+    description: Allows usage of dice two emoji
+    default: true
+  huechat.emoji.dice3:
+    description: Allows usage of dice three emoji
+    default: true
+  huechat.emoji.dice4:
+    description: Allows usage of dice four emoji
+    default: true
+  huechat.emoji.dice5:
+    description: Allows usage of dice five emoji
+    default: true
+  huechat.emoji.dice6:
+    description: Allows usage of dice six emoji
+    default: true
+  # Zodiac
+  huechat.emoji.aries:
+    description: Allows usage of the aries zodiac emoji
+    default: true
+  huechat.emoji.taurus:
+    description: Allows usage of the taurus zodiac emoji
+    default: true
+  huechat.emoji.gemini:
+    description: Allows usage of the gemini zodiac emoji
+    default: true
+  huechat.emoji.cancer:
+    description: Allows usage of the cancer zodiac emoji
+    default: true
+  huechat.emoji.leo:
+    description: Allows usage of the leo zodiac emoji
+    default: true
+  huechat.emoji.virgo:
+    description: Allows usage of the virgo zodiac emoji
+    default: true
+  huechat.emoji.libra:
+    description: Allows usage of the libra zodiac emoji
+    default: true
+  huechat.emoji.scorpius:
+    description: Allows usage of the scorpius zodiac emoji
+    default: true
+  huechat.emoji.sagittarius:
+    description: Allows usage of the sagittarius zodiac emoji
+    default: true
+  huechat.emoji.capricorn:
+    description: Allows usage of the capricorn zodiac emoji
+    default: true
+  huechat.emoji.aquarius:
+    description: Allows usage of the aquarius zodiac emoji
+    default: true
+  huechat.emoji.pisces:
+    description: Allows usage of the pisces zodiac emoji
+    default: true 

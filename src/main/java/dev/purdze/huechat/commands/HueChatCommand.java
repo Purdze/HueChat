@@ -68,6 +68,8 @@ public class HueChatCommand implements CommandExecutor, TabCompleter {
                 return handleColorCommand((Player) sender, args[1]);
             case "mention":
                 return MentionCommand.execute(sender, plugin, label, args);
+            case "emojis":
+                return EmojisCommand.execute(sender, plugin);
             default:
                 sender.sendMessage(HueChat.getPrefix() + ChatColor.RED + "Unknown command. Use /" + label + " help for help.");
                 return true;
@@ -129,6 +131,7 @@ public class HueChatCommand implements CommandExecutor, TabCompleter {
             if (sender instanceof Player) {
                 completions.add("color");
                 completions.add("mention");
+                completions.add("emojis");
             }
             return completions.stream()
                 .filter(s -> s.toLowerCase().startsWith(args[0].toLowerCase()))
