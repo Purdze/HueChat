@@ -1,6 +1,7 @@
 package dev.purdze.huechat.listeners;
 
 import dev.purdze.huechat.HueChat;
+import dev.purdze.huechat.utils.ProfanityFilter;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -78,6 +79,9 @@ public class ChatListener implements Listener {
         Player player = event.getPlayer();
         String message = event.getMessage();
         boolean isMentioned = false;
+        
+        // Apply profanity filter first
+        message = plugin.getProfanityFilter().filterMessage(message);
         
         // Convert emoji aliases to Unicode emojis only if player has permission
         if (player.hasPermission("huechat.emoji.*")) {

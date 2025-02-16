@@ -16,3 +16,7 @@ mentions:
   sound:
     # View all possible sounds here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Sound.html
     type: ENTITY_EXPERIENCE_ORB_PICKUP
+
+# Profanity Filter settings
+profanity-filter:
+  enabled: true

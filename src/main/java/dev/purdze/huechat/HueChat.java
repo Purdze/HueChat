@@ -5,6 +5,7 @@ import dev.purdze.huechat.gui.ColorGUI;
 import dev.purdze.huechat.listeners.ChatListener;
 import dev.purdze.huechat.listeners.JoinListener;
 import dev.purdze.huechat.hooks.PlaceholderAPIHook;
+import dev.purdze.huechat.utils.ProfanityFilter;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.event.HandlerList;
@@ -29,6 +30,7 @@ public class HueChat extends JavaPlugin {
     private static final int RESOURCE_ID = 121702;
     private String latestVersion;
     private int serverVersion;
+    private ProfanityFilter profanityFilter;
     
     @Override
     public void onEnable() {
@@ -54,18 +56,25 @@ public class HueChat extends JavaPlugin {
             getLogger().warning("Error determining server version, defaulting to latest: " + e.getMessage());
         }
         
+        // Save default config
         saveDefaultConfig();
+        
+        // Save banned-words.yml if it doesn't exist
+        saveResource("banned-words.yml", false);
         
         updateConfig();
         updatePrefix();
         loadPlayerData();
+        
+        // Initialize profanity filter
+        this.profanityFilter = new ProfanityFilter(this);
         
         // Initialize GUI only if enabled
         if (getConfig().getBoolean("commands.gui", true)) {
             this.colorGUI = ColorGUI.getInstance(this);
         }
         
-        // Register huechat command
+        // Register commands
         HueChatCommand hueChatCommand = new HueChatCommand(this);
         getCommand("huechat").setExecutor(hueChatCommand);
         getCommand("huechat").setTabCompleter(hueChatCommand);
@@ -218,5 +227,9 @@ public class HueChat extends JavaPlugin {
 
     public int getServerVersion() {
         return serverVersion;
+    }
+
+    public ProfanityFilter getProfanityFilter() {
+        return profanityFilter;
     }
 } 

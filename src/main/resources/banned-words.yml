@@ -1,0 +1,4 @@
+# List of banned words for HueChat profanity filter
+# Words are case-insensitive
+banned-words:
+  - "badword"
